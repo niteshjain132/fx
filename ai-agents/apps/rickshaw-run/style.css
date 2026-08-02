@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ff9a56 0%, #ff6b35 40%, #2d1b0e 100%);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  overflow: hidden;
+  touch-action: none;
+}
+
+#app {
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#game {
+  display: block;
+  background: #3a3a3a;
+  max-height: 95vh;
+  width: auto;
+  height: auto;
+}
+
+#hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  text-align: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+#overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#overlay h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #ffd54f;
+}
+
+#overlay p {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+#overlay .controls {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+#start-btn {
+  margin-top: 16px;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffd54f, #ff9800);
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 152, 0, 0.5);
+}
+
+#start-btn:hover {
+  transform: scale(1.05);
+}
+
+#start-btn:active {
+  transform: scale(0.98);
+}

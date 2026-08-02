@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Rickshaw Run — Dodge &amp; Speed Up!</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game" width="400" height="700"></canvas>
+      <div id="hud">
+        <span id="score">0</span>
+        <span id="speed">Speed: 1x</span>
+      </div>
+      <div id="overlay" class="visible">
+        <h1>Rickshaw Run</h1>
+        <p>Dodge traffic. Survive. Speed up the streets!</p>
+        <p class="controls">← → or A D to switch lanes · Tap sides on mobile</p>
+        <button id="start-btn">Honk &amp; Go!</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

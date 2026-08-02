@@ -10,6 +10,7 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "dev": "npm run dev --workspace hello-agent",
+    "game": "npm run dev --workspace rickshaw-run",
     "start": "npm run start --workspace hello-agent",
     "create:app": "node scripts/create-app.mjs"
   },
