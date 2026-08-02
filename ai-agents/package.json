@@ -1,0 +1,25 @@
+{
+  "name": "ai-agents",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for building AI agent applications",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "npm run dev --workspace hello-agent",
+    "game": "npm run dev --workspace rickshaw-run",
+    "start": "npm run start --workspace hello-agent",
+    "create:app": "node scripts/create-app.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3"
+  },
+  "license": "MIT"
+}
