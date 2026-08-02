@@ -27,6 +27,7 @@ No lint/test scripts. TrueFX API may return empty data; app still runs.
 |---------|---------|-------|
 | All workspaces | `npm run build` | Builds `packages/agent-core` and all apps |
 | hello-agent | `npm start` | Interactive CLI starter agent |
+| rickshaw-run | `npm run game` | Browser dodge game at http://localhost:5173 |
 
 Workflow from `ai-agents/`:
 
@@ -35,6 +36,7 @@ npm install
 npm run build
 npm start          # runs hello-agent
 npm run create:app <name>   # scaffold a new app from template
+npm run game                # rickshaw-run browser game on :5173
 ```
 
 `ai-agents/` has its own `package.json`, `node_modules`, and TypeScript 5 — do not rely on the root FX project's older TypeScript 2 toolchain when working under `ai-agents/`.
