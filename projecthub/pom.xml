@@ -86,4 +86,50 @@
             </plugin>
         </plugins>
     </build>
+
+    <!--
+      macOS standalone .app / .dmg via jpackage.
+      Activate on a MacBook: mvn -pl projecthub -Pmacos-app package
+      Or use the helper script: ./projecthub/scripts/package-macos.sh
+    -->
+    <profiles>
+        <profile>
+            <id>macos-app</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.panteleyev</groupId>
+                        <artifactId>jpackage-maven-plugin</artifactId>
+                        <version>1.6.6</version>
+                        <configuration>
+                            <name>ProjectHub</name>
+                            <appVersion>1.0.0</appVersion>
+                            <vendor>cursor-ws</vendor>
+                            <destination>target/dist</destination>
+                            <input>target</input>
+                            <mainJar>projecthub-${project.version}.jar</mainJar>
+                            <mainClass>org.springframework.boot.loader.launch.JarLauncher</mainClass>
+                            <javaOptions>
+                                <option>-Xmx512m</option>
+                                <option>--enable-native-access=ALL-UNNAMED</option>
+                            </javaOptions>
+                            <macPackageName>ProjectHub</macPackageName>
+                            <macPackageIdentifier>com.cursorws.projecthub</macPackageIdentifier>
+                            <icon>packaging/macos/ProjectHub.png</icon>
+                            <type>APP_IMAGE</type>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>mac-app-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jpackage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -90,6 +90,47 @@ mvn -pl projecthub clean package
 # projecthub/target/projecthub-1.0.0-SNAPSHOT.jar
 ```
 
+## macOS standalone app (double-click to launch)
+
+Yes — on a **MacBook** you can produce a native `ProjectHub.app` (and a `.dmg` installer) with JDK `jpackage`. The bundle **embeds a Java runtime**, so end users do not need JDK/Maven installed. Double-click the app (or the app inside the DMG) to start.
+
+> `jpackage` must run **on macOS**. It cannot cross-build a `.app` from Linux/Windows.
+
+### One-command package (recommended)
+
+```bash
+./projecthub/scripts/package-macos.sh
+```
+
+Outputs:
+
+| Artifact | Path |
+|----------|------|
+| App bundle | `projecthub/target/dist/ProjectHub.app` |
+| Disk image | `projecthub/target/dist/ProjectHub-1.0.0.dmg` |
+
+### Install & start
+
+```bash
+# Open the DMG, drag ProjectHub to Applications, then:
+open -a ProjectHub
+
+# Or launch the built app directly:
+open projecthub/target/dist/ProjectHub.app
+```
+
+### Maven profile (app-image only)
+
+```bash
+mvn -pl projecthub -Pmacos-app clean package
+```
+
+### Stop the standalone app
+
+Quit from the macOS menu bar (**ProjectHub → Quit**), press `Cmd+Q`, or close the window.
+
+First Gatekeeper launch may require **Right-click → Open** (unsigned local build). To sign/notarize for distribution outside your machine, use an Apple Developer ID with `codesign` / `notarytool` (not covered by the default script).
+
 ## Start
 
 ### Option A — Maven (dev)
