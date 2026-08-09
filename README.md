@@ -1,14 +1,53 @@
 # cursor-ws
 
-Cursor workspace monorepo hosting **ProjectHub** — a macOS-native engineering project dashboard built with Java 21, Spring Boot 3, JavaFX 21, and AtlantaFX.
+Multi-module Maven monorepo for Cursor desktop/apps work.
+
+**Repository:** https://github.com/niteshjain132/cursor-ws
+
+Each application lives in its own Maven module under this parent. Add new apps over time without creating separate repos.
+
+```
+cursor-ws/                 ← parent POM (com.cursorws:cursor-ws)
+├── pom.xml
+├── projecthub/            ← module 1: engineering dashboard (JavaFX)
+├── <future-app>/          ← module 2, 3, … (add here)
+└── README.md
+```
 
 ## Modules
 
 | Module | Artifact | Description |
 |--------|----------|-------------|
-| [`projecthub`](./projecthub) | `com.cursorws:projecthub` | Desktop dashboard with Git + VS Code integration |
+| [`projecthub`](./projecthub) | `com.cursorws:projecthub` | macOS-native engineering dashboard (Java 21, Spring Boot 3, JavaFX 21, AtlantaFX) |
 
-## Architecture
+## Adding a new app module
+
+1. Create a directory at the repo root, e.g. `myapp/`.
+2. Add `myapp/pom.xml` with parent:
+
+```xml
+<parent>
+    <groupId>com.cursorws</groupId>
+    <artifactId>cursor-ws</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</parent>
+<artifactId>myapp</artifactId>
+```
+
+3. Register it in the root `pom.xml`:
+
+```xml
+<modules>
+    <module>projecthub</module>
+    <module>myapp</module>
+</modules>
+```
+
+4. Build just that module: `mvn -pl myapp -am package`
+
+Shared dependency versions belong in the parent `<dependencyManagement>` / `<properties>`.
+
+## Architecture (ProjectHub)
 
 ```mermaid
 flowchart TB
@@ -77,7 +116,7 @@ flowchart TB
 
 ## Build
 
-From the repository root (`cursor-ws`):
+From the repository root:
 
 ```bash
 # Compile all modules + run unit tests
@@ -92,48 +131,36 @@ mvn -pl projecthub clean package
 
 ## macOS standalone app (double-click to launch)
 
-Yes — on a **MacBook** you can produce a native `ProjectHub.app` (and a `.dmg` installer) with JDK `jpackage`. The bundle **embeds a Java runtime**, so end users do not need JDK/Maven installed. Double-click the app (or the app inside the DMG) to start.
+On a **MacBook** you can produce a native `ProjectHub.app` (and a `.dmg` installer) with JDK `jpackage`. The bundle **embeds a Java runtime**, so end users do not need JDK/Maven installed.
 
 > `jpackage` must run **on macOS**. It cannot cross-build a `.app` from Linux/Windows.
-
-### One-command package (recommended)
 
 ```bash
 ./projecthub/scripts/package-macos.sh
 ```
-
-Outputs:
 
 | Artifact | Path |
 |----------|------|
 | App bundle | `projecthub/target/dist/ProjectHub.app` |
 | Disk image | `projecthub/target/dist/ProjectHub-1.0.0.dmg` |
 
-### Install & start
-
 ```bash
-# Open the DMG, drag ProjectHub to Applications, then:
-open -a ProjectHub
-
-# Or launch the built app directly:
 open projecthub/target/dist/ProjectHub.app
+# or after install into Applications:
+open -a ProjectHub
 ```
 
-### Maven profile (app-image only)
+Maven profile (app-image only):
 
 ```bash
 mvn -pl projecthub -Pmacos-app clean package
 ```
 
-### Stop the standalone app
+First Gatekeeper launch may require **Right-click → Open** (unsigned local build).
 
-Quit from the macOS menu bar (**ProjectHub → Quit**), press `Cmd+Q`, or close the window.
+## Start (dev)
 
-First Gatekeeper launch may require **Right-click → Open** (unsigned local build). To sign/notarize for distribution outside your machine, use an Apple Developer ID with `codesign` / `notarytool` (not covered by the default script).
-
-## Start
-
-### Option A — Maven (dev)
+### Option A — Maven
 
 ```bash
 mvn -pl projecthub spring-boot:run
@@ -146,34 +173,27 @@ mvn -pl projecthub clean package -DskipTests
 java -jar projecthub/target/projecthub-1.0.0-SNAPSHOT.jar
 ```
 
-### Option C — Headless / CI (virtual framebuffer)
+### Option C — Headless / CI
 
 ```bash
-# Ensure a display is available, then:
 xvfb-run -a mvn -pl projecthub spring-boot:run
 ```
-
-On first launch you should see:
-
-- Left sidebar with **ProjectHub** branding and navigation
-- Dashboard metrics (Active Projects, Sprint Tasks, Releases, Velocity)
-- Interactive project cards with branch selector and **Open**
 
 ## Stop
 
 | How you started | How to stop |
 |-----------------|-------------|
-| Foreground Maven / JAR in a terminal | `Ctrl+C` |
-| Background shell job | `kill $(pgrep -f 'projecthub\|ProjectHubApplication')` or `kill %1` |
-| From another terminal | `pkill -f 'com.projecthub.ProjectHubApplication'` |
+| Foreground Maven / JAR | `Ctrl+C` |
+| Standalone `.app` | `Cmd+Q` or ProjectHub → Quit |
+| Background process | `pkill -f 'com.projecthub.ProjectHubApplication'` |
 
-Closing the ProjectHub window also shuts down the Spring context and exits the JVM (`Application#stop`).
+Closing the ProjectHub window also shuts down the Spring context and exits the JVM.
 
 ## ProjectHub usage
 
-1. **Open in VS Code** — click **Open** on a project card (`code <path>`, with macOS `open -a "Visual Studio Code"` fallback).
-2. **Switch branch** — pick a branch in the card `ComboBox`; ProjectHub runs `git checkout` and shows a toast.
-3. **Project detail** — click the card body (not the dropdown/Open button) to open Kanban + repository files in-app.
+1. **Open in VS Code** — click **Open** on a project card.
+2. **Switch branch** — pick a branch in the card `ComboBox`.
+3. **Project detail** — click the card body to open Kanban + repository files.
 4. **Back** — use **Back to Dashboard** on the detail view.
 
 ## Tests
@@ -181,8 +201,6 @@ Closing the ProjectHub window also shuts down the Spring context and exits the J
 ```bash
 mvn test
 ```
-
-Key coverage:
 
 - `GitServiceTest` — branch list parsing / remote prefix normalization
 - `VSCodeLauncherServiceTest` — missing-path handling and non-throwing launch attempts

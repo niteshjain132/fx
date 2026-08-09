@@ -17,9 +17,12 @@
     <packaging>pom</packaging>
 
     <name>cursor-ws</name>
-    <description>Cursor workspace monorepo — desktop and related modules</description>
+    <description>Multi-module Cursor workspace monorepo — add each new app as a Maven module</description>
+
+    <url>https://github.com/niteshjain132/cursor-ws</url>
 
     <modules>
+        <!-- Register every new app module here -->
         <module>projecthub</module>
     </modules>
 
