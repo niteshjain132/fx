@@ -3,21 +3,19 @@
 # Must be run on macOS with JDK 21+ (jpackage cannot cross-compile .app from Linux).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-MODULE_DIR="$ROOT/projecthub"
+MODULE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 DIST_DIR="$MODULE_DIR/target/dist"
 ICON_PNG="$MODULE_DIR/packaging/macos/ProjectHub.png"
 ICON_ICNS="$MODULE_DIR/packaging/macos/ProjectHub.icns"
 APP_NAME="ProjectHub"
 BUNDLE_ID="com.cursorws.projecthub"
 MAIN_JAR="projecthub-1.0.0-SNAPSHOT.jar"
-# Spring Boot 3 executable launcher
 MAIN_CLASS="org.springframework.boot.loader.launch.JarLauncher"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
   echo "ERROR: macOS .app packaging must run on a Mac (found $(uname -s))." >&2
   echo "On your MacBook:" >&2
-  echo "  cd $ROOT && ./projecthub/scripts/package-macos.sh" >&2
+  echo "  cd $MODULE_DIR && ./scripts/package-macos.sh" >&2
   exit 1
 fi
 
@@ -27,7 +25,7 @@ if ! command -v jpackage >/dev/null 2>&1; then
 fi
 
 echo "==> Building Spring Boot fat JAR"
-(cd "$ROOT" && mvn -pl projecthub -am clean package -DskipTests)
+(cd "$MODULE_DIR" && mvn clean package -DskipTests)
 
 JAR_PATH="$MODULE_DIR/target/$MAIN_JAR"
 if [[ ! -f "$JAR_PATH" ]]; then
@@ -35,7 +33,6 @@ if [[ ! -f "$JAR_PATH" ]]; then
   exit 1
 fi
 
-# Convert PNG → ICNS when iconutil is available
 if [[ -f "$ICON_PNG" ]] && command -v iconutil >/dev/null 2>&1; then
   echo "==> Generating $ICON_ICNS"
   ICONSET="$(mktemp -d)/ProjectHub.iconset"

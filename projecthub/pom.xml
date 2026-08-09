@@ -5,14 +5,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.cursorws</groupId>
-        <artifactId>cursor-ws</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
     </parent>
 
+    <groupId>com.cursorws</groupId>
     <artifactId>projecthub</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <name>ProjectHub</name>
     <description>macOS-native engineering project dashboard built with Spring Boot 3 and JavaFX 21</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <javafx.version>21.0.5</javafx.version>
+        <fxweaver.version>2.0.1</fxweaver.version>
+        <atlantafx.version>2.0.1</atlantafx.version>
+        <ikonli.version>12.3.1</ikonli.version>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -22,30 +35,37 @@
         <dependency>
             <groupId>net.rgielen</groupId>
             <artifactId>javafx-weaver-spring-boot-starter</artifactId>
+            <version>${fxweaver.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.mkpaz</groupId>
             <artifactId>atlantafx-base</artifactId>
+            <version>${atlantafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-javafx</artifactId>
+            <version>${ikonli.version}</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-feather-pack</artifactId>
+            <version>${ikonli.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,6 +86,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.projecthub.ProjectHubApplication</mainClass>
                 </configuration>
@@ -89,8 +110,8 @@
 
     <!--
       macOS standalone .app / .dmg via jpackage.
-      Activate on a MacBook: mvn -pl projecthub -Pmacos-app package
-      Or use the helper script: ./projecthub/scripts/package-macos.sh
+      On a MacBook: mvn -Pmacos-app package
+      Or: ./scripts/package-macos.sh
     -->
     <profiles>
         <profile>
