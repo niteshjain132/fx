@@ -1,0 +1,378 @@
+/* ProjectHub custom styles — layered on AtlantaFX PrimerLight */
+
+.root {
+    -ph-sidebar: #1E222A;
+    -ph-sidebar-hover: #2A303A;
+    -ph-sidebar-active: #343B48;
+    -ph-accent: #0969DA;
+    -ph-accent-soft: #DDF4FF;
+    -ph-canvas: #F6F8FA;
+    -ph-surface: #FFFFFF;
+    -ph-border: #D0D7DE;
+    -ph-text: #1F2328;
+    -ph-muted: #656D76;
+    -ph-success: #1A7F37;
+    -ph-warning: #9A6700;
+    -ph-danger: #CF222E;
+}
+
+.app-root {
+    -fx-background-color: -ph-canvas;
+}
+
+/* —— Sidebar —— */
+.sidebar {
+    -fx-background-color: -ph-sidebar;
+}
+
+.brand-title {
+    -fx-text-fill: #F0F3F6;
+    -fx-font-size: 20px;
+    -fx-font-family: "SF Pro Display", "Segoe UI", "Helvetica Neue", sans-serif;
+    -fx-font-weight: bold;
+}
+
+.brand-icon {
+    -fx-icon-color: #58A6FF;
+}
+
+.sidebar-separator {
+    -fx-background-color: #3A424E;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C9D1D9;
+    -fx-font-size: 13px;
+    -fx-padding: 10 12 10 12;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.nav-button:hover {
+    -fx-background-color: -ph-sidebar-hover;
+    -fx-text-fill: #FFFFFF;
+}
+
+.nav-button.nav-active {
+    -fx-background-color: -ph-sidebar-active;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.status-card {
+    -fx-background-color: #161B22;
+    -fx-background-radius: 10;
+    -fx-border-color: #30363D;
+    -fx-border-radius: 10;
+}
+
+.status-card-title {
+    -fx-text-fill: #8B949E;
+    -fx-font-size: 11px;
+}
+
+.status-card-value {
+    -fx-text-fill: #3FB950;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.settings-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8B949E;
+    -fx-padding: 10 12 10 12;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.settings-button:hover {
+    -fx-background-color: -ph-sidebar-hover;
+    -fx-text-fill: #FFFFFF;
+}
+
+.settings-button .ikonli-font-icon {
+    -fx-icon-color: #8B949E;
+}
+
+/* —— Dashboard canvas —— */
+.content-host, .dashboard-view, .detail-view {
+    -fx-background-color: -ph-canvas;
+}
+
+.page-title {
+    -fx-font-size: 26px;
+    -fx-font-family: "SF Pro Display", "Segoe UI", "Helvetica Neue", sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -ph-muted;
+}
+
+.workspace-selector {
+    -fx-background-radius: 8;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+/* —— Metric cards —— */
+.metric-card {
+    -fx-background-color: -ph-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -ph-border;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(31, 35, 40, 0.06), 8, 0, 0, 2);
+}
+
+.metric-label {
+    -fx-text-fill: -ph-muted;
+    -fx-font-size: 12px;
+}
+
+.metric-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+.metric-badge {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 8 2 8;
+    -fx-background-radius: 999;
+}
+
+.badge-success {
+    -fx-text-fill: -ph-success;
+    -fx-background-color: #DAFBE1;
+}
+
+.badge-warning {
+    -fx-text-fill: -ph-warning;
+    -fx-background-color: #FFF8C5;
+}
+
+.metric-sparkline {
+    -fx-text-fill: -ph-accent;
+    -fx-font-size: 14px;
+    -fx-letter-spacing: 1;
+}
+
+.metric-hint {
+    -fx-text-fill: -ph-muted;
+    -fx-font-size: 11px;
+}
+
+/* —— Project cards —— */
+.project-card {
+    -fx-background-color: -ph-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -ph-border;
+    -fx-border-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(31, 35, 40, 0.05), 6, 0, 0, 1);
+}
+
+.project-card:hover {
+    -fx-border-color: -ph-accent;
+    -fx-effect: dropshadow(gaussian, rgba(9, 105, 218, 0.12), 10, 0, 0, 2);
+}
+
+.project-card-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+.project-progress {
+    -fx-accent: -ph-accent;
+}
+
+.project-progress-label {
+    -fx-text-fill: -ph-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tech-badge {
+    -fx-background-color: #EEF2F6;
+    -fx-text-fill: #424A53;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 999;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.open-button {
+    -fx-background-color: -ph-accent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+
+.open-button:hover {
+    -fx-background-color: #0550AE;
+}
+
+.open-button .ikonli-font-icon {
+    -fx-icon-color: white;
+}
+
+.branch-combo {
+    -fx-background-radius: 8;
+}
+
+.projects-scroll, .activity-scroll, .kanban-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.projects-scroll > .viewport,
+.activity-scroll > .viewport,
+.kanban-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* —— Widgets —— */
+.widget-card {
+    -fx-background-color: -ph-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -ph-border;
+    -fx-border-radius: 12;
+}
+
+.widget-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+.milestone-title, .activity-actor {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+.milestone-days, .activity-action, .activity-time {
+    -fx-font-size: 12px;
+    -fx-text-fill: -ph-muted;
+}
+
+.milestone-status {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 8 2 8;
+    -fx-background-radius: 999;
+    -fx-background-color: #EEF2F6;
+    -fx-text-fill: #424A53;
+}
+
+.milestone-status.status-urgent {
+    -fx-background-color: #FFEBE9;
+    -fx-text-fill: -ph-danger;
+}
+
+.milestone-status.status-on-track {
+    -fx-background-color: #DAFBE1;
+    -fx-text-fill: -ph-success;
+}
+
+.milestone-icon, .activity-icon {
+    -fx-icon-color: -ph-accent;
+}
+
+/* —— Detail / Kanban —— */
+.back-button {
+    -fx-background-color: -ph-surface;
+    -fx-border-color: -ph-border;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 12 8 12;
+}
+
+.detail-meta-label {
+    -fx-text-fill: -ph-muted;
+    -fx-font-size: 12px;
+}
+
+.detail-branch {
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: -ph-accent;
+    -fx-background-color: -ph-accent-soft;
+    -fx-padding: 2 8 2 8;
+    -fx-background-radius: 6;
+}
+
+.kanban-column {
+    -fx-background-color: #EFF2F5;
+    -fx-background-radius: 10;
+    -fx-min-height: 220;
+}
+
+.kanban-column-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: -ph-muted;
+}
+
+.kanban-card {
+    -fx-background-color: -ph-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -ph-border;
+    -fx-border-radius: 8;
+}
+
+.kanban-card-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -ph-text;
+}
+
+.kanban-card-status {
+    -fx-font-size: 11px;
+    -fx-text-fill: -ph-muted;
+}
+
+.files-list {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: -ph-border;
+}
+
+/* —— Toasts —— */
+.toast {
+    -fx-padding: 12 18 12 18;
+    -fx-background-radius: 10;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 12, 0, 0, 4);
+}
+
+.toast-success {
+    -fx-background-color: #1A7F37;
+    -fx-text-fill: white;
+}
+
+.toast-error {
+    -fx-background-color: #CF222E;
+    -fx-text-fill: white;
+}
+
+.toast-info {
+    -fx-background-color: #0969DA;
+    -fx-text-fill: white;
+}
